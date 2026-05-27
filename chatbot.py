@@ -24,7 +24,8 @@ if prompt := st.chat_input("What's up?"):
             st.error("Configure a provider API key to send messages.")
         else:
             try:
-                assistant_reply = model_client.complete(st.session_state.messages)
+                response = model_client.complete(st.session_state.messages)
+                assistant_reply = response.content
                 st.markdown(assistant_reply)
                 st.session_state.messages.append(
                     {"role": "assistant", "content": assistant_reply}
